@@ -13,6 +13,24 @@ I am not responsible for anything,
 you are responsible for everything,
 blah blah blah.
 
+## The wrong Raid 5
+I just googled "wallet seed phrase" and there is this very
+bad idea of splitting your phrase into three blocks, and
+then storing
+- Sheet A: 1,2
+- Sheet B: 2,3
+- Sheet C: 3,1
+
+This is not Raid 5 and way less secure.  
+With this method you would store 16 of 24 words.
+An attacker would only have to guess 8.
+
+You would provide him with 4 more words than neccessary.
+4 more word results in only 0,000000000005684342% time requirement.
+
+__Do not give an attacker 99.999999999994315658% of the solution.__
+
+
 
 ## ✅ Potential Feature Considerations
 
