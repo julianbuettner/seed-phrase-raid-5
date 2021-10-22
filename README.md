@@ -1,0 +1,281 @@
+# Seed Phrase - Raid 5
+
+Split your 24 word phrase across three sheets, so you have 
+3x 12 words.  
+One sheet can be lost or stolen without you having to worry.  
+
+So, basically like RAID 5.  
+Except this has nothing to do with disks.  
+This is only using the binary XOR operation to generate redundancy.
+
+## 🌿 Disclaimer
+I am not responsible for anything,
+you are responsible for everything,
+blah blah blah.
+
+
+## 🧮 How does it work?
+Your 24 word will get divided into block A and block B,
+with 12 words each.  
+Then there will be block X generated as redundancy.  
+X = A xor B
+
+You enter your 24 words (reading this should make you _REEEEALLY_ uncomfortable).  
+Then it will be split into part A, part B and a redundancy part X.
+
+- If you lose X, you still have A and B.  
+- If you lose A, with X you can restore B.  
+- If you lose B, with X you can restore A.  
+
+
+## 🔑 How can I do it securely?
+_Paranoia mode_: _on_ 🕵️‍♀️
+
+Do the following steps and you should be fine:  
+
+__⚠️ #0 Do not trust this repository__  
+Do not trust this code or this guide.  
+Check the code for yourself.
+If you are not a computer scientist, ask one you trust.
+
+
+__🛡 #1 Get Tails__  
+When you run the code to generate redundancy,  
+you want to leave not a single bit of information when running this program.  
+You might know the Tor Browser. Tails is from the same people.
+
+Download it and install it to an USB stick.  
+[Tails](https://tails.boum.org/index.de.html)
+
+
+__💻 #2 Run Tails__  
+Boot from the USB stick.  
+You have to trust the hardware. If there is
+a disk with malware (including the Windows OS), that's fine.
+
+__🍍 #3 Get Rust__  
+To generate this program from its source code, you need
+the Rust compiler. I recommend rustup. 
+[rustup.rs](https://rustup.rs).
+
+__☕️ #4 Compile the program__  
+Clone this code, or download it as zip and extract it.  
+After installing Rust, you can run the following command
+in a terminal with the working directory set to.
+```bash
+cargo build
+```
+
+__📡 #5 Secure your environment__  
+_Paranoia mode_: _supercharged_
+- Move the screen away from any windows.  
+- Do not execute the process outdoors where someone might see you.  
+  Also, spy satellites have really high resolutions these days.  
+- Make sure your keyboard has no hardware keylogger installed.
+- Make sure no person is with you.
+- Make sure no one can record your keyboard clicks, processor ticks, etc.
+
+_Very important:_
+- Disable any possible way for the computer to connect to the internet.
+
+__🔐 #6 Run the Program__  
+
+Check again all points of chapter `#5 Secure your environemnt`.
+
+Now run
+```bash
+cargo run
+```
+and follow the instructions.
+
+
+__🍕 #7 Verify the Restoration__  
+Pretend you lost the words from block A, and check if
+the program can restore the words.
+
+Now do the same as if you lost block B.
+
+You do not have to check the loss of X,
+as A + B is your original word list.
+
+
+## A little bit of background (and math).
+The words are from Bitcoin's Improvement Proposal BIP39.  
+[Ian Coleman - BIP39](https://iancoleman.io/bip39/).
+
+Word 0 is `abandon`, and represents eleven zerobits.  
+`00000000000`.  
+Word 2047 is `zoo`, and represents eleven ones.  
+`11111111111`.
+
+This structure allows to xor two words and obtaining a third one.  
+This is known as creating parity.
+
+The following rules apply to the xor operation.
+
+`A xor B = B xor A`  
+`(A xor B) xor B = A`  
+`(A xor B) xor A = B`  
+
+
+24 words have 264 bits, with a little bit of
+redundancy in itself.  
+The information contained is 256 bits.  
+The entropy is 256bit / 264bit = 0.97.
+
+When having one sheet, one has 132bit and 128bit information.  
+To bruteforce the remaining 128bit, one has to calculate up to  
+`340282366920938463463374607431768211456` Hashes.  
+To be honest, I have no clue how secure this actually is.  
+(Could someone please calculate how long this would take for different super computers?)
+
+If someone steals one of your sheets, move your funds, get new keys.
+
+
+## Usage Examples
+Here an example of creating an redundancy block:
+
+```
+$ cargo run
+==================
+Seed Phrase Raid 5
+==================
+
+ 1: Create redundancy
+ 2: Restore from redundancy
+
+What do you want to do? > 1
+
+=================
+Create redundancy
+=================
+
+Enter word 01 > patient
+Enter word 02 > wall
+Enter word 03 > rural
+Enter word 04 > drink
+Enter word 05 > sleep
+Enter word 06 > school
+Enter word 07 > scatter
+Enter word 08 > twin
+Enter word 09 > sibling
+Enter word 10 > jeans
+Enter word 11 > panda
+Enter word 12 > frog
+Enter word 13 > believe
+Enter word 14 > bright
+Enter word 15 > major
+Enter word 16 > bonus
+Enter word 17 > autumn
+Enter word 18 > initial
+Enter word 19 > regular
+Enter word 20 > soul
+Enter word 21 > weird
+Enter word 22 > baby
+Enter word 23 > ecology
+Enter word 24 > average
+
+== Block A ==
+Word 01: patient
+Word 02: wall
+Word 03: rural
+Word 04: drink
+Word 05: sleep
+Word 06: school
+Word 07: scatter
+Word 08: twin
+Word 09: sibling
+Word 10: jeans
+Word 11: panda
+Word 12: frog
+
+== Block B ==
+Word 01: believe
+Word 02: bright
+Word 03: major
+Word 04: bonus
+Word 05: autumn
+Word 06: initial
+Word 07: regular
+Word 08: soul
+Word 09: weird
+Word 10: baby
+Word 11: ecology
+Word 12: average
+
+== Block X ==
+Word 01: remember
+Word 02: turkey
+Word 03: desk
+Word 04: foil
+Word 05: setup
+Word 06: rebel
+Word 07: input
+Word 08: cave
+Word 09: direct
+Word 10: grit
+Word 11: sunny
+Word 12: fancy
+```
+
+Here a restoration from Block X and A:
+```
+$ cargo run
+==================
+Seed Phrase Raid 5
+==================
+
+ 1: Create redundancy
+ 2: Restore from redundancy
+
+What do you want to do? > 2
+=============
+Restore Block
+=============
+
+== Enter the words of block X ==
+Enter word 01 > remember
+Enter word 02 > turkey
+Enter word 03 > deskkkkkkkk
+Unknown word: "deskkkkkkkk"
+Enter word 03 > desk
+Enter word 04 > foil
+Enter word 05 > setup
+Enter word 06 > rebel
+Enter word 07 > input
+Enter word 08 > cave
+Enter word 09 > direct
+Enter word 10 > grit
+Enter word 11 > sunny
+Enter word 12 > fancy
+
+== Enter the words of block A or B ==
+Enter word 01 > patient
+Enter word 02 > wall
+Enter word 03 > rural
+Enter word 04 > drink
+Enter word 05 > sleep
+Enter word 06 > school
+Enter word 07 > scatter
+Enter word 08 > twin
+Enter word 09 > sibling
+Enter word 10 > jeands
+Unknown word: "jeands"
+Enter word 10 > jeans
+Enter word 11 > panda
+Enter word 12 > frog
+
+== The missing block (A or B) ==
+Word 01: believe
+Word 02: bright
+Word 03: major
+Word 04: bonus
+Word 05: autumn
+Word 06: initial
+Word 07: regular
+Word 08: soul
+Word 09: weird
+Word 10: baby
+Word 11: ecology
+Word 12: average
+```
