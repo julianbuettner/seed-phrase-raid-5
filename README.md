@@ -13,8 +13,8 @@ I am not responsible for anything,
 you are responsible for everything,
 blah blah blah.
 
-## The wrong Raid 5
-I just googled "wallet seed phrase" and there is this very
+## 👎🏼 The wrong Raid 5
+When you google for "wallet seed phrase raid 5" and there is this very
 bad idea of splitting your phrase into three blocks, and
 then storing
 - Sheet A: 1,2
