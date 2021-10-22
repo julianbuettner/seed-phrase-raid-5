@@ -1,13 +1,13 @@
-
 mod wordlist;
 
-use wordlist::WORDLIST;
 use std::io::{self, Write};
+use wordlist::WORDLIST;
 
 type Wordbits = u16;
 
 fn get_word_vector() -> Vec<String> {
-    WORDLIST.split("\n")
+    WORDLIST
+        .split("\n")
         .map(|x| x.to_string())
         .collect::<Vec<String>>()
 }
@@ -28,10 +28,7 @@ fn bits_to_word(bits: &Wordbits) -> String {
 
 fn xor_wordlists(a: &Vec<Wordbits>, b: &Vec<Wordbits>) -> Vec<Wordbits> {
     (0..a.len())
-        .map(|i| {
-                (a[i] ^ b[i]) % (1 << 11)
-            }
-        )
+        .map(|i| (a[i] ^ b[i]) % (1 << 11))
         .collect::<Vec<Wordbits>>()
 }
 
@@ -113,7 +110,6 @@ fn restore() {
     for i in 0..12 {
         println!("Word {:02}: {}", i + 1, bits_to_word(&missing[i]));
     }
-
 }
 
 fn main() {
@@ -155,9 +151,10 @@ mod test {
         major bonus autumn initial regular soul weird baby ecology average";
 
     fn get_sample() -> Vec<String> {
-        SAMPLE.split_whitespace()
-        .map(|x| x.to_string())
-        .collect::<Vec<String>>()
+        SAMPLE
+            .split_whitespace()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
     }
 
     #[test]

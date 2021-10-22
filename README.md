@@ -14,6 +14,41 @@ you are responsible for everything,
 blah blah blah.
 
 
+## ✅ Potential Feature Considerations
+
+__Dropping one word per sheet__  
+This would mean one has to brute force about
+2048 * 2048 = 4194304 = 2 ** 22 possibilities to restore from two sheets.  
+This would result in a restoration duration of still less than a second.  
+
+Why doing it then?  
+When having stolen one sheet, one had to guess the missing 12 plus 2 words.  
+Meaning having to check 2 ** 132 * 2 ** 22 = 2 ** 154 Words.  
+That is the difference between  
+`5444517870735015415413993718908291383296` and
+`22835963083295358096932575511191922182123945984`.  
+
+If you would have been able to guess the missing 12 words in
+ten seconds (!),
+it would now take you 485 days 10 hours 50 minutes and 40 seconds.  
+
+When working on a exponential scale, every bit makes a difference.
+
+__Adding a password__  
+One could use a password and generate a hash of 264bit.  
+All words would be xor-ed with this hash.  
+These new words can now be used to generated block A, B and X.  
+
+If one has to restore the word list, one could restore A, B and X
+as usual and now the password is required to generate the
+264bit hash, and xor the word list back to normal.
+
+This would be much more safe than dropping one word per sheet,
+but it also requires the user to remember it.
+
+__More ideas or whishes? - Let me know!__
+
+
 ## 🧮 How does it work?
 Your 24 word will get divided into block A and block B,
 with 12 words each.  
