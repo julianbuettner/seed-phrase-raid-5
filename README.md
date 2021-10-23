@@ -143,7 +143,7 @@ _Paranoia mode_: _supercharged_
 
 _Very important:_
 - Disable any possible way for the computer to connect to the internet.  
-vga extract image with video
+
 __🔐 #6 Run the Program__  
 
 Double check all points of `#5 Secure your environemnt`.
@@ -165,7 +165,7 @@ You do not have to check the loss of X,
 as A + B is your original word list.
 
 
-## A little bit of background (and math).
+## 📝 A little bit of background (and math).
 The words are from Bitcoin's Improvement Proposal BIP39.  
 [Ian Coleman - BIP39](https://iancoleman.io/bip39/).
 
@@ -198,7 +198,7 @@ To be honest, I have no clue how secure this actually is.
 If someone steals one of your sheets, move your funds, get new keys.
 
 
-## Usage Examples
+## 🥕 Usage Examples
 Here an example of creating an redundancy block:
 
 ```
