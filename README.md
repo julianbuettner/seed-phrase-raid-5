@@ -43,14 +43,14 @@ Why doing it then?
 When having stolen one sheet, one had to guess the missing 12 plus 2 words.  
 Meaning having to check 2 ** 132 * 2 ** 22 = 2 ** 154 Words.  
 That is the difference between  
-`5444517870735015415413993718908291383296` and
+`5444517870735015415413993718908291383296` and  
 `22835963083295358096932575511191922182123945984`.  
 
 If you would have been able to guess the missing 12 words in
 ten seconds (!),
 it would now take you 485 days 10 hours 50 minutes and 40 seconds.  
 
-When working on a exponential scale, every bit makes a difference.
+When working on an exponential scale, every bit makes a difference.
 
 __Adding a password__  
 One could use a password and generate a hash of 264bit.  
