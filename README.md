@@ -106,34 +106,47 @@ Boot from the USB stick.
 You have to trust the hardware. If there is
 a disk with malware (including the Windows OS), that's fine.
 
+You need to set a root password.  
+[Guide](https://tails.boum.org/doc/first_steps/welcome_screen/administration_password/)
+
+When launching, please connect to the Tor network, as we have
+to fetch dependencies.
+
 __🍍 #3 Get Rust__  
 To generate this program from its source code, you need
-the Rust compiler. I recommend rustup. 
-[rustup.rs](https://rustup.rs).
+the Rust compiler.
+
+Please fire up the root terminal.  
+Install Rust's packet manager cargo with
+```
+apt-get install cargo
+```
 
 __☕️ #4 Compile the program__  
-Clone this code, or download it as zip and extract it.  
-After installing Rust, you can run the following command
-in a terminal with the working directory set to.
+Now, clone the code and compile it.
 ```bash
+git clone https://github.com/julianbuettner/seed-phrase-raid-5.git
+cd seed-phrase-raid-5
 cargo build
 ```
 
 __📡 #5 Secure your environment__  
 _Paranoia mode_: _supercharged_
-- Move the screen away from any windows.  
-- Do not execute the process outdoors where someone might see you.  
-  Also, spy satellites have really high resolutions these days.  
-- Make sure your keyboard has no hardware keylogger installed.
-- Make sure no person is with you.
+- Make sure your screen and keyboard are not seen
+  - Move the screen away from any windows.  
+  - Consider potential reflections.
+  - Do not execute the process outdoors where someone might see you.  
+    Also, spy satellites have really high resolutions these days.  
+- Make sure the hardware you are using can be trusted.
+    - Check for potential installed bugs or keyloggers.
 - Make sure no one can record your keyboard clicks, processor ticks, etc.
 
 _Very important:_
-- Disable any possible way for the computer to connect to the internet.
-
+- Disable any possible way for the computer to connect to the internet.  
+vga extract image with video
 __🔐 #6 Run the Program__  
 
-Check again all points of chapter `#5 Secure your environemnt`.
+Double check all points of `#5 Secure your environemnt`.
 
 Now run
 ```bash
